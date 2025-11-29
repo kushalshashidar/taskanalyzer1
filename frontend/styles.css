@@ -120,7 +120,9 @@ label {
     font-size: 0.875rem;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
     width: 100%;
     padding: 0.75rem;
     background-color: #0f172a;
@@ -131,7 +133,9 @@ input, textarea, select {
     transition: border-color 0.2s;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
     outline: none;
     border-color: var(--accent);
 }
@@ -250,9 +254,22 @@ input:focus, textarea:focus, select:focus {
     transform: translateX(4px);
 }
 
-.task-card.priority-high { border-left-color: var(--danger); }
-.task-card.priority-medium { border-left-color: var(--warning); }
-.task-card.priority-low { border-left-color: var(--success); }
+.task-card.priority-high {
+    border-left-color: var(--danger);
+}
+
+.task-card.priority-medium {
+    border-left-color: var(--warning);
+}
+
+.task-card.priority-low {
+    border-left-color: var(--success);
+}
+
+.task-card.circular-dependency {
+    border: 2px solid var(--danger);
+    background-color: rgba(239, 68, 68, 0.1);
+}
 
 .task-header {
     display: flex;

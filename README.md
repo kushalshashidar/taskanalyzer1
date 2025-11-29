@@ -68,3 +68,4 @@ The algorithm supports dynamic strategies that adjust the weights:
 *   **Sorting Strategies**: Implemented 4 distinct strategies.
 *   **Dependency Logic**: Tasks that block others are prioritized.
 *   **Visual Explanations**: The UI explains *why* a task got its score.
+*   **Circular Dependency Detection**: The system detects cycles (e.g., A->B->A) and visually flags them with a warning.
