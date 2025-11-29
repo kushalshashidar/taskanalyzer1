@@ -69,3 +69,9 @@ The algorithm supports dynamic strategies that adjust the weights:
 *   **Dependency Logic**: Tasks that block others are prioritized.
 *   **Visual Explanations**: The UI explains *why* a task got its score.
 *   **Circular Dependency Detection**: The system detects cycles (e.g., A->B->A) and visually flags them with a warning.
+
+## 🔮 Future Improvements
+*   **User Authentication**: Allow users to save their own task lists securely.
+*   **Database Persistence**: Fully utilize the database to save tasks between sessions (currently `/analyze` is stateless).
+*   **Drag-and-Drop Interface**: Allow users to reorder tasks manually to override the algorithm.
+*   **Email Notifications**: Send reminders for high-priority tasks.
