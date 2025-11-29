@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Task Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Smart Task Analyzer</h1>
+            <p>Intelligent prioritization for your workflow</p>
+        </header>
+
+        <main class="grid-layout">
+            <!-- Input Section -->
+            <section class="card input-section">
+                <h2>Add Tasks</h2>
+                
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('manual')">Manual Entry</button>
+                    <button class="tab-btn" onclick="switchTab('json')">Bulk JSON</button>
+                </div>
+
+                <div id="manual-tab" class="tab-content active">
+                    <form id="task-form">
+                        <div class="form-group">
+                            <label for="title">Task Title</label>
+                            <input type="text" id="title" required placeholder="e.g., Fix login bug">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="due_date">Due Date</label>
+                                <input type="date" id="due_date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="estimated_hours">Est. Hours</label>
+                                <input type="number" id="estimated_hours" step="0.5" min="0.5" required placeholder="2.0">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="importance">Importance (1-10)</label>
+                            <div class="range-container">
+                                <input type="range" id="importance" min="1" max="10" value="5" oninput="document.getElementById('imp-val').textContent = this.value">
+                                <span id="imp-val" class="badge">5</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dependencies">Dependencies (IDs)</label>
+                            <input type="text" id="dependencies" placeholder="Comma separated IDs (e.g., 1, 2)">
+                            <small>Optional: IDs of tasks this depends on</small>
+                        </div>
+
+                        <button type="submit" class="btn primary">Add to List</button>
+                    </form>
+                </div>
+
+                <div id="json-tab" class="tab-content">
+                    <div class="form-group">
+                        <label for="json-input">Paste JSON Array</label>
+                        <textarea id="json-input" rows="10" placeholder='[
+    {
+        "id": 1,
+        "title": "Task A",
+        "due_date": "2025-12-01",
+        "estimated_hours": 3,
+        "importance": 8,
+        "dependencies": []
+    }
+]'></textarea>
+                    </div>
+                    <button onclick="loadJson()" class="btn secondary">Load JSON</button>
+                </div>
+
+                <div class="current-list">
+                    <h3>Current List (<span id="task-count">0</span>)</h3>
+                    <ul id="task-list-preview">
+                        <!-- Preview items -->
+                    </ul>
+                    <div class="actions">
+                        <button onclick="analyzeTasks()" class="btn accent">Analyze & Prioritize</button>
+                        <button onclick="clearList()" class="btn text">Clear</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Output Section -->
+            <section class="card output-section">
+                <div class="output-header">
+                    <h2>Analysis Results</h2>
+                    <div class="strategy-selector">
+                        <label>Strategy:</label>
+                        <select id="strategy" onchange="analyzeTasks()">
+                            <option value="smart">Smart Balance</option>
+                            <option value="urgent">Deadline Driven</option>
+                            <option value="important">High Impact</option>
+                            <option value="quick">Fastest Wins</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="results-container" class="results-list">
+                    <div class="empty-state">
+                        <p>Add tasks and click Analyze to see results</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
